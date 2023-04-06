@@ -1,8 +1,6 @@
 import numpy as np
-import scipy
 import matplotlib.pyplot as plt
 import seaborn as sns
-from scipy import stats
 
 longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
 lognormal_path = "/users/ipatel9/dataset/lognormal-190.bin.data"
