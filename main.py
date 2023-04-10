@@ -30,11 +30,14 @@ arr.sort()
 # print(randArr)
 
 # norm_cdf = scipy.stats.norm.cdf(randArr)  # calculate the cdf - also discrete
+print("arranging in evenly spaced values (CDF)...")
 new_cdf = np.arange(1, len(arr)+1)/float(len(arr))
 # mass_cdf = np.arange(1, len(rand_dataset)+1)/float(len(rand_dataset))
 
 # plot the cdf
+print("plotting line...")
 sns.lineplot(x=arr, y=new_cdf, drawstyle="steps-post")
+print("showing graph...")
 plt.show(block=True)
 
 
