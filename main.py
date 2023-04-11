@@ -6,7 +6,7 @@ longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
 lognormal_path = "/users/ipatel9/dataset/lognormal-190.bin.data"
 sequential_path = "/users/ipatel9/dataset/sequential-dataset.txt"
 
-file_name = longlat_path
+file_name = sequential_path
 print("opening file: " + file_name)
 
 # read binary
@@ -36,9 +36,11 @@ new_cdf = np.arange(1, len(arr)+1)/float(len(arr))
 
 # plot the cdf
 print("plotting line...")
-sns.lineplot(x=arr, y=new_cdf, drawstyle="steps-post")
+myplot = sns.lineplot(x=arr, y=new_cdf, drawstyle="steps-post")
+plt.savefig(myplot)
 print("showing graph...")
 plt.show(block=True)
+
 
 
 # https://stats.stackexchange.com/questions/381588/how-does-this-code-find-the-cdf
