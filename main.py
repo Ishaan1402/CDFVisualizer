@@ -4,7 +4,7 @@ import seaborn as sns
 import scipy.stats
 
 longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
-lognormal_path = "/users/ipatel9/dataset/lognormal-190.bin.data"
+lognormal_path = "/users/ipatel9/dataset/lognormal-190M.bin.data"
 sequential_path = "datasets/sequential-dataset.txt"
 
 file_name = lognormal_path
