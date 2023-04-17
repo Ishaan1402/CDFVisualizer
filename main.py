@@ -1,46 +1,49 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import scipy.stats
 
 longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
 lognormal_path = "/users/ipatel9/dataset/lognormal-190.bin.data"
-sequential_path = "/users/ipatel9/dataset/sequential-dataset.txt"
+sequential_path = "datasets/sequential-dataset.txt"
 
-file_name = sequential_path
+file_name = lognormal_path
 print("opening file: " + file_name)
 
 # read binary
 f = open(file_name, "rb")
 
 # read text
-f_text = open(file_name, "r")
+# f_text = open(file_name, "r")
 
 print("creating float array...")
-arr = np.fromfile(f, dtype=np.float)
+# arr = np.fromfile(f_text, dtype=np.int)
+arr = f.read().split()
+# my_arr = np.load(lognormal_path)
+# print(arr)
+
+# arr = np.fromfile(f_text, dtype=np.float)
 print("sorting array...")
 arr.sort()
 
 
-# rand_dataset = np.random.randn(10000) # generate samples from normal distribution (discrete data)
-# rand_dataset.sort()
+rand_dataset = np.random.randn(10000)  # generate samples from normal distribution (discrete data)
+rand_dataset.sort()
 
 # randArr = np.random.randint(0, 10, 5)
 # randArr.sort()
 
-# print(randArr)
 
-# norm_cdf = scipy.stats.norm.cdf(randArr)  # calculate the cdf - also discrete
-print("arranging in evenly spaced values (CDF)...")
-new_cdf = np.arange(1, len(arr)+1)/float(len(arr))
-# mass_cdf = np.arange(1, len(rand_dataset)+1)/float(len(rand_dataset))
+cdf = scipy.stats.norm.cdf(arr)
 
 # plot the cdf
 print("plotting line...")
-myplot = sns.lineplot(x=arr, y=new_cdf, drawstyle="steps-post")
-plt.savefig(myplot)
+
+# for empirical cdf add drawstyle="steps-post" as 3rd parameter in next line
+my_plot = sns.lineplot(x=arr, y=cdf)
+# plt.savefig(my_plot)
 print("showing graph...")
 plt.show(block=True)
-
 
 
 # https://stats.stackexchange.com/questions/381588/how-does-this-code-find-the-cdf
