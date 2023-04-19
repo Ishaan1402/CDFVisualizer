@@ -3,47 +3,40 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import scipy.stats
 
-longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
-lognormal_path = "/users/ipatel9/dataset/lognormal-190M.bin.data"
+# Generate random height data
 sequential_path = "datasets/sequential-dataset.txt"
+test_lognormal_path = "datasets/lognormal-190M.bin.data"
+lognormal_path = "/users/ipatel9/dataset/lognormal-190M.bin.data"
+longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
 
 file_name = lognormal_path
-print("opening file: " + file_name)
 
-# read binary
-f = open(file_name, "rb")
+key_type = int
 
-# read text
-# f_text = open(file_name, "r")
+if file_name is lognormal_path or test_lognormal_path:
+    key_type = np.int_
+elif file_name is longlat_path:
+    key_type = np.float
 
-print("creating float array...")
-# arr = np.fromfile(f_text, dtype=np.int)
-arr = f.read().split()
-# my_arr = np.load(lognormal_path)
-# print(arr)
+with open(file_name, 'rb') as file:
+    arr = np.fromfile(file, dtype=key_type)
 
-# arr = np.fromfile(f_text, dtype=np.float)
-print("sorting array...")
-arr.sort()
+# for i in range(10):
+#     print(arr[i])
 
+# arr = np.divide(arr, np.sum(arr))
 
-rand_dataset = np.random.randn(10000)  # generate samples from normal distribution (discrete data)
-rand_dataset.sort()
+# Create CDF
+counts, bin_edges = np.histogram(arr, bins=10000000, density=True)
+cdf = np.cumsum(counts)
+# cumulative_prob = cdf / float(len(arr))
 
-# randArr = np.random.randint(0, 10, 5)
-# randArr.sort()
-
-
-cdf = scipy.stats.norm.cdf(arr)
-
-# plot the cdf
-print("plotting line...")
-
-# for empirical cdf add drawstyle="steps-post" as 3rd parameter in next line
-my_plot = sns.lineplot(x=arr, y=cdf)
-# plt.savefig(my_plot)
-print("showing graph...")
-plt.show(block=True)
+# Plot CDF
+plt.plot(bin_edges[1:], cdf)
+plt.xlabel('Key')
+plt.ylabel('CDF')
+plt.savefig("CDFplot.png")
+# plt.show()
 
 
 # https://stats.stackexchange.com/questions/381588/how-does-this-code-find-the-cdf
