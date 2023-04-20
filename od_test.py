@@ -8,7 +8,7 @@ test_longlat_path = "datasets/longlat-200M.bin.data"
 lognormal_path = "/users/ipatel9/dataset/lognormal-190M.bin.data"
 longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
 
-file_name = sequential_path
+file_name = lognormal_path
 key_type = int
 
 if file_name == lognormal_path or file_name == test_lognormal_path:
@@ -16,7 +16,7 @@ if file_name == lognormal_path or file_name == test_lognormal_path:
 elif file_name == longlat_path or file_name == test_longlat_path:
     key_type = np.float
 
-with open(file_name, 'r') as file:
+with open(file_name, 'rb') as file:
     arr = np.fromfile(file, dtype=key_type)
 
 
