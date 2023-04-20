@@ -9,7 +9,6 @@ lognormal_path = "/users/ipatel9/dataset/lognormal-190M.bin.data"
 longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
 
 file_name = lognormal_path
-
 key_type = int
 
 if file_name == lognormal_path or file_name == test_lognormal_path:
@@ -20,13 +19,15 @@ elif file_name == longlat_path or file_name == test_longlat_path:
 with open(file_name, 'rb') as file:
     arr = np.fromfile(file, dtype=key_type)
 
-# Compute the histogram
+
+# Create array counting the occurrences of integers in arr and return their frequency at each index
+print(len(arr))
 counts_arr = np.bincount(arr)
 
-# Calculate the probability density function (PDF)
+# Calculate the probability density function
 pdf = counts_arr / len(arr)
 
-# Calculate the cumulative distribution function (CDF)
+# Calculate the cumulative distribution function
 cdf = np.cumsum(pdf)
 
 # Create a plot of the CDF
@@ -34,3 +35,5 @@ plt.plot(np.arange(len(cdf)), cdf)
 plt.xlabel('Value')
 plt.ylabel('CDF')
 plt.show()
+
+
