@@ -46,18 +46,18 @@ def countFreq(array):
 
 # Create array counting the occurrences of integers in arr and return their frequency at each index
 print("start countFreq")
-counts_arr = countFreq(arr)
+# counts_arr = countFreq(arr)
 
 print("length of arr: ", len(arr))
-print(arr)
-print("length of count_arrs: ", len(counts_arr))
-print(counts_arr)
+# print(arr)
+# print("length of count_arrs: ", len(counts_arr))
+# print(counts_arr)
 
 # Calculate the probability density function
-pdf = np.divide(counts_arr, len(arr))
+# pdf = np.divide(counts_arr, len(arr))
 
 # Calculate the cumulative distribution function
-cdf = np.cumsum(pdf)
+# cdf = np.cumsum(pdf)
 
 # Create a plot of the CDF
 ecdf = np.arange(1, len(arr)+1) / len(arr)
@@ -69,7 +69,7 @@ plt.title('Test')
 plt.xlabel('Keys')
 plt.ylabel('CDF')
 print("saving plot...")
-# plt.savefig("CDFPlot.png")
-plt.show()
+plt.savefig("ecdf_plot.png")
+# plt.show()
 
 
