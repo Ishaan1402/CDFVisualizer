@@ -11,7 +11,8 @@ longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
 longitudes_path = "/users/ipatel9/dataset/longitudes-200M.bin.data"
 ycsb_path = "/users/ipatel9/dataset/ycsb-200M.bin.data"
 amazon_path = "datasets/amazon.out.text"
-enron_path = "datasets/enron.out"
+test_enron_path = "datasets/enron.out"
+enron_path = "/users/ipatel9/dataset/enron.out"
 
 file_name = enron_path
 key_type = np.int64
