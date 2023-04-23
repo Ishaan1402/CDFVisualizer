@@ -76,6 +76,7 @@ locs, labels = plt.yticks()  # Get the current locations and labels.
 plt.yticks(np.arange(0, 1.1, step=0.25))
 plt.grid(axis = 'y')
 plt.title('Enron')
+plt.xscale("log")
 plt.xlabel('Key')
 plt.ylabel('CDF')
 print("saving plot...")
