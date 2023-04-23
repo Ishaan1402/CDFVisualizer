@@ -23,11 +23,11 @@ elif file_name == longlat_path or file_name == test_longlat_path or file_name ==
     key_type = np.float
 
 # uncomment for binary file
-# with open(file_name, 'rb') as file:
-#     arr = np.fromfile(file, dtype=key_type)
+with open(file_name, 'rb') as file:
+    arr = np.fromfile(file, dtype=key_type)
 
 # uncomment for text files
-arr = np.loadtxt(file_name)
+# arr = np.loadtxt(file_name)
 
 
 # countFreq counts the frequencies of each unique key and inputs them into a new array where the
