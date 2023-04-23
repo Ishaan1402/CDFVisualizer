@@ -8,7 +8,7 @@ test_longlat_path = "datasets/longlat-200M.bin.data"
 lognormal_path = "/users/ipatel9/dataset/lognormal-190M.bin.data"
 longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
 
-file_name = test_longlat_path
+file_name = longlat_path
 key_type = np.int
 
 if file_name == lognormal_path or file_name == test_lognormal_path:
