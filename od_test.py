@@ -61,9 +61,10 @@ print("length of arr: ", len(arr))
 
 # Create a plot of the CDF
 ecdf = np.arange(1, len(arr)+1) / len(arr)
+arr.sort()
 
 # Plot the eCDF
-plt.step(arr.sort(), ecdf)
+plt.step(arr, ecdf)
 # plt.step(arr.sort(), cdf)
 plt.title('Test')
 plt.xlabel('Keys')
