@@ -11,7 +11,7 @@ longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
 longitudes_path = "/users/ipatel9/dataset/longitudes-200M.bin.data"
 ycsb_path = "/users/ipatel9/dataset/ycsb-200M.bin.data"
 
-file_name = ycsb_path
+file_name = lognormal_path
 key_type = np.int
 
 if file_name == lognormal_path or file_name == test_lognormal_path or file_name == ycsb_path or file_name == test_ycsb_path:
@@ -72,11 +72,11 @@ plt.step(arr, ecdf)
 locs, labels = plt.yticks()  # Get the current locations and labels.
 plt.yticks(np.arange(0, 1.1, step=0.25))
 plt.grid(axis = 'y')
-plt.title('YCSB')
-plt.xlabel('Keys')
+plt.title('Lognormal')
+plt.xlabel('Key')
 plt.ylabel('CDF')
 print("saving plot...")
-plt.savefig("ycsb_ecdf.png")
+plt.savefig("lognormal_ecdf.png")
 # plt.show()
 
 
