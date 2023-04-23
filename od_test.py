@@ -14,7 +14,7 @@ amazon_path = "datasets/amazon.out.text"
 test_enron_path = "datasets/enron.out"
 enron_path = "/users/ipatel9/dataset/enron.out"
 
-file_name = enron_path
+file_name = longitudes_path
 key_type = np.int64
 
 if file_name == lognormal_path or file_name == test_lognormal_path or file_name == ycsb_path or file_name == test_ycsb_path:
