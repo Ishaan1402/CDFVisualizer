@@ -3,40 +3,47 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import scipy.stats
 
-
 sequential_path = "datasets/sequential-dataset.txt"
 test_lognormal_path = "datasets/lognormal-190M.bin.data"
+test_longlat_path = "datasets/longlat-200M.bin.data"
+test_longitudes_path = "datasets/longitudes-200M.bin.data"
+test_ycsb_path = "datasets/ycsb-200M.bin.data"
 lognormal_path = "/users/ipatel9/dataset/lognormal-190M.bin.data"
 longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
+longitudes_path = "/users/ipatel9/dataset/longitudes-200M.bin.data"
+ycsb_path = "/users/ipatel9/dataset/ycsb-200M.bin.data"
 
-file_name = lognormal_path
-print("opening file: " + file_name)
+file_name = test_longlat_path
+key_type = np.int
 
-# read binary
+if file_name == lognormal_path or file_name == test_lognormal_path or file_name == ycsb_path or file_name == test_ycsb_path:
+    key_type = np.int_
+elif file_name == longlat_path or file_name == test_longlat_path or file_name == test_longitudes_path or file_name == longitudes_path:
+    key_type = np.float
+
 with open(file_name, 'rb') as file:
-    arr = np.fromfile(file, dtype=np.int_)
+    arr = np.fromfile(file, dtype=key_type)
 
-
-# for i in range(10):
-#     print(arr[i])
-
-# arr = np.divide(arr, np.sum(arr))
-
-# plot the cdf
-print("plotting line...")
 # Create CDF
-counts, bin_edges = np.histogram(arr, bins=10000000, density=True)
+counts, bin_edges = np.histogram(arr, bins=62500, density=True)
 cdf = np.cumsum(counts)
-# cumulative_prob = cdf / float(len(arr))
 
-# for empirical cdf add drawstyle="steps-post" as 3rd parameter in next line
-my_plot = sns.lineplot(x=arr, y=cdf)
-# plt.savefig(my_plot)
-print("showing graph...")
-plt.show(block=True)
 # Plot CDF
 plt.plot(bin_edges[1:], cdf)
+# plt.xlim([0, 1])
+plt.title("Longlat Plot")
+
 plt.xlabel('Key')
 plt.ylabel('CDF')
-plt.savefig("testCDFplot.png")
-# plt.show()
+# plt.savefig("lognormal_cdf.png")
+plt.show()
+
+
+# YCSB - 20 bins? (magnitude of 1e-18, no 0.0 min on y; in theory needs 2 * 10^19 bins for proper y-axis)
+# lognormal - 1000000 bins? (magnitude of 1e-8 on y, curve exceeds 1.0, no 0.0 min on y; in theory needs 10^14 bins for proper y-axis)
+# longitudes - 357 bins
+# longlat - 62500 bins
+
+# notes:
+# YCSB x-axis goes up to 1, in theory should go past 1
+# YCSB only one that doesn't start at 0.0 for y
