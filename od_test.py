@@ -23,7 +23,7 @@ cit_path = "/users/ipatel9/dataset/cit-patents.out"
 fb_path = "/users/ipatel9/dataset/fb-wall.out"
 
 
-file_name = fb_path
+file_name = longitudes_path
 key_type = np.int64
 
 if file_name == lognormal_path or file_name == test_lognormal_path or file_name == ycsb_path or file_name == test_ycsb_path:
@@ -32,11 +32,11 @@ elif file_name == longlat_path or file_name == test_longlat_path or file_name ==
     key_type = np.float
 
 # uncomment for binary file
-# with open(file_name, 'rb') as file:
-#     arr = np.fromfile(file, dtype=key_type)
+with open(file_name, 'rb') as file:
+    arr = np.fromfile(file, dtype=key_type)
 
 # uncomment for text files
-arr = np.loadtxt(file_name)
+# arr = np.loadtxt(file_name)
 
 
 print("length of arr: ", len(arr))
@@ -47,22 +47,26 @@ arr.sort()
 
 # Plot the eCDF
 print("plotting cdf...")
-plt.step(arr, ecdf)
+plt.step(arr, ecdf, linewidth=3)
 
 title_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
-        'size'   : 26}
+        'size'   : 30}
 
-axis_font = {'family' : 'sans-serif',
+x_axis_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
         'size'   : 20}
+y_axis_font = {'family' : 'sans-serif',
+        'fontweight' : 'medium',
+        'size'   : 25}
 
-plt.title("fb-wall", **title_font)
-plt.xlabel('Key', **axis_font)
-# plt.ylabel('CDF', **axis_font)
+plt.title("longitudes", **title_font)
+plt.xlabel('Key', **x_axis_font)
+plt.ylabel('CDF', **y_axis_font)
 plt.subplots_adjust(bottom=0.15)
 locs, labels = plt.yticks()
-plt.yticks(np.arange(0, 1.1, step=0.25))
+plt.yticks(np.arange(0, 1.1, step=0.25), fontsize=15)
+plt.xticks(fontsize=15)
 plt.grid(axis = 'y')
 print("saving plot...")
 plt.savefig("fb-wall_ecdf.png")
