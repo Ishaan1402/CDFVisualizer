@@ -51,19 +51,19 @@ plt.step(arr, ecdf, linewidth=3)
 
 title_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
-        'size'   : 30}
+        'size'   : 33}
 
 x_axis_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
-        'size'   : 20}
+        'size'   : 23}
 y_axis_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
-        'size'   : 25}
+        'size'   : 28}
 
 plt.title("longitudes", **title_font)
 plt.xlabel('Key', **x_axis_font)
 plt.ylabel('CDF', **y_axis_font)
-plt.subplots_adjust(bottom=0.15, left=0.15)
+plt.subplots_adjust(bottom=0.15, left=0.15, top=0.15)
 locs, labels = plt.yticks()
 plt.yticks(np.arange(0, 1.1, step=0.25), fontsize=15)
 plt.xticks(fontsize=15)
