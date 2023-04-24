@@ -51,11 +51,11 @@ plt.step(arr, ecdf)
 
 title_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
-        'size'   : 23}
+        'size'   : 26}
 
 axis_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
-        'size'   : 18}
+        'size'   : 20}
 
 plt.title("longitudes", **title_font)
 plt.xlabel('Key', **axis_font)
