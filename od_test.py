@@ -57,7 +57,7 @@ axis_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
         'size'   : 20}
 
-plt.title("longlat", **title_font)
+plt.title("lognormal", **title_font)
 plt.xlabel('Key', **axis_font)
 # plt.ylabel('CDF', **axis_font)
 plt.subplots_adjust(bottom=0.15)
