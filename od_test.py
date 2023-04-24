@@ -50,7 +50,7 @@ print("plotting cdf...")
 plt.step(arr, ecdf)
 
 title_font = {'family' : 'sans-serif',
-        'fontweight' : 'bold',
+        'fontweight' : 'medium',
         'size'   : 23}
 
 axis_font = {'family' : 'sans-serif',
