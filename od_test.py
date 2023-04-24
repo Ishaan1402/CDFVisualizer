@@ -23,7 +23,7 @@ cit_path = "/users/ipatel9/dataset/cit-patents.out"
 fb_path = "/users/ipatel9/dataset/fb-wall.out"
 
 
-file_name = longitudes_path
+file_name = longlat_path
 key_type = np.int64
 
 if file_name == lognormal_path or file_name == test_lognormal_path or file_name == ycsb_path or file_name == test_ycsb_path:
@@ -57,13 +57,15 @@ axis_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
         'size'   : 20}
 
-plt.title("longitudes", **title_font)
+plt.title("longlat", **title_font)
 plt.xlabel('Key', **axis_font)
-plt.ylabel('CDF', **axis_font)
+# plt.ylabel('CDF', **axis_font)
 plt.subplots_adjust(bottom=0.15)
 locs, labels = plt.yticks()
 plt.yticks(np.arange(0, 1.1, step=0.25))
+ax = plt.gca()
+ax.get_yaxis().set_visible(False)
 plt.grid(axis = 'y')
 print("saving plot...")
-plt.savefig("longitudes_ecdf.png")
+plt.savefig("longlat_ecdf.png")
 # plt.show()
