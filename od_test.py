@@ -46,14 +46,15 @@ ecdf = np.arange(1, len(arr)+1) / len(arr)
 arr.sort()
 
 # Plot the eCDF
+print("plotting cdf...")
 plt.step(arr, ecdf)
 
 title_font = {'family' : 'sans-serif',
-        'fontweight' : 'extra bold',
+        'fontweight' : 'bold',
         'size'   : 23}
 
 axis_font = {'family' : 'sans-serif',
-        'fontweight' : 'bold',
+        'fontweight' : 'medium',
         'size'   : 18}
 
 plt.title("longitudes", **title_font)
@@ -66,5 +67,3 @@ plt.grid(axis = 'y')
 print("saving plot...")
 plt.savefig("longitudes_ecdf.png")
 # plt.show()
-
-
