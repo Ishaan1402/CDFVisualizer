@@ -23,7 +23,7 @@ cit_path = "/users/ipatel9/dataset/cit-patents.out"
 fb_path = "/users/ipatel9/dataset/fb-wall.out"
 
 
-file_name = lognormal_path
+file_name = ycsb_path
 key_type = np.int64
 
 if file_name == lognormal_path or file_name == test_lognormal_path or file_name == ycsb_path or file_name == test_ycsb_path:
@@ -57,7 +57,7 @@ axis_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
         'size'   : 20}
 
-plt.title("lognormal", **title_font)
+plt.title("YCSB", **title_font)
 plt.xlabel('Key', **axis_font)
 # plt.ylabel('CDF', **axis_font)
 plt.subplots_adjust(bottom=0.15)
@@ -65,6 +65,6 @@ locs, labels = plt.yticks()
 plt.yticks(np.arange(0, 1.1, step=0.25))
 plt.grid(axis = 'y')
 print("saving plot...")
-plt.savefig("lognormal_ecdf.png")
-print(file_name, " plot created")
+plt.savefig("ycsb_ecdf.png")
+print(file_name[23:], " plot created")
 # plt.show()
