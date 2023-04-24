@@ -62,11 +62,11 @@ plt.xlabel('Key', **axis_font)
 # plt.ylabel('CDF', **axis_font)
 plt.subplots_adjust(bottom=0.15)
 ax = plt.gca()
-ax.set_yticks([])
+
 locs, labels = plt.yticks()
 plt.yticks(np.arange(0, 1.1, step=0.25))
 plt.grid(axis = 'y')
-
+ax.set_yticks([])
 print("saving plot...")
 plt.savefig("longlat_ecdf.png")
 # plt.show()
