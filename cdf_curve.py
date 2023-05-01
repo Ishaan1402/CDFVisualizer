@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# test.py is used for simple, quick plotting for CDF/frequency of test datasets (approximation)
+# cdf_curve.py was used for the HPC cluster to plot the accurate CDF curve (actual)
 
 # Test Paths
 sequential_path = "datasets/sequential-dataset.txt"
@@ -24,32 +24,34 @@ amazon_path = "/users/ipatel9/dataset/amazon.out.text"
 cit_path = "/users/ipatel9/dataset/cit-patents.out"
 fb_path = "/users/ipatel9/dataset/fb-wall.out"
 
-file_name = test_ycsb_path
-key_type = np.int
 
-# switch datatypes for certain files
+file_name = fb_path
+key_type = np.int64
+
 if file_name == lognormal_path or file_name == test_lognormal_path or file_name == ycsb_path or file_name == test_ycsb_path:
     key_type = np.int_
 elif file_name == longlat_path or file_name == test_longlat_path or file_name == test_longitudes_path or file_name == longitudes_path:
     key_type = np.float
 
-# uncomment for binary files
-with open(file_name, 'rb') as file:
-    arr = np.fromfile(file, dtype=key_type)
+# uncomment for binary file
+# with open(file_name, 'rb') as file:
+#     arr = np.fromfile(file, dtype=key_type)
 
 # uncomment for text files
-# arr = np.loadtxt(file_name)
+t_arr = np.loadtxt(file_name)
 
-# using numpy histogram method to approximate the CDF/frequency of each dataset
-counts, bin_edges = np.histogram(arr, bins='auto')
 
-# calculate the bin centers
-bin_centers = 0.5*(bin_edges[1:] + bin_edges[:-1])
+print("length of arr: ", len(t_arr))
 
-# plot the PDF as a line chart
-plt.plot(bin_centers, counts, linewidth=3)
+# Create a plot of the CDF
+ecdf = np.arange(1, len(t_arr)+1) / len(t_arr)
+t_arr.sort()
 
-# plot customization
+# Plot the eCDF (empirical CDF)
+print("plotting cdf...")
+plt.step(t_arr, ecdf, linewidth=3)
+
+# Plot customization
 title_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
         'size'   : 33}
@@ -61,31 +63,23 @@ y_axis_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
         'size'   : 28}
 
-plt.title("YCSB", **title_font)
+plt.title("fb-wall", **title_font)
 plt.xlabel('Key', **x_axis_font)
-plt.ylabel('Frequency', **y_axis_font)
-# plt.subplots_adjust(bottom=0.15, left=0.15)
+plt.ylabel('CDF', **y_axis_font)
+
+# add left=0.17 if adding y label
 plt.subplots_adjust(bottom=0.15)
-plt.locator_params(axis='x', nbins=6)
-plt.locator_params(axis='y', nbins=8)
-
-locs, labels = plt.yticks()  # Get the current locations and labels.
-plt.yticks(np.arange(0, 500000, step=100000), fontsize=15)
-plt.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
-
-
+locs, labels = plt.yticks()
+plt.yticks(np.arange(0, 1.1, step=0.25), fontsize=15)
 plt.xticks(fontsize=15)
+
+# use the below line if xticks overlap, switch between 4 and 6
+# plt.locator_params( axis='x', nbins=6)
+
 plt.grid(axis = 'y')
 
-plt.savefig("YCSB_freq.png")
-plt.show()
-
-
-# YCSB - 20 bins? (magnitude of 1e-18, no 0.0 min on y; in theory needs 2 * 10^19 bins for proper y-axis)
-# lognormal - 1000000 bins? (magnitude of 1e-8 on y, curve exceeds 1.0, no 0.0 min on y; in theory needs 10^14 bins for proper y-axis)
-# longitudes - 357 bins
-# longlat - 62500 bins
-
-# notes:
-# YCSB x-axis goes up to 1, in theory should go past 1
-# YCSB only one that doesn't start at 0.0 for y
+# saving figure and showing
+print("saving plot...")
+plt.savefig("fb-wall_ecdf.png")
+print(file_name[23:], "plot created")
+# plt.show()

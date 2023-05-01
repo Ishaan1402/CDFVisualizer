@@ -4,15 +4,19 @@ import matplotlib.pyplot as plt
 sequential_path = "datasets/sequential-dataset.txt"
 test_lognormal_path = "datasets/lognormal-190M.bin.data"
 test_longlat_path = "datasets/longlat-200M.bin.data"
+test_longitudes_path = "datasets/longitudes-200M.bin.data"
+test_ycsb_path = "datasets/ycsb-200M.bin.data"
 lognormal_path = "/users/ipatel9/dataset/lognormal-190M.bin.data"
 longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
+longitudes_path = "/users/ipatel9/dataset/longitudes-200M.bin.data"
+ycsb_path = "/users/ipatel9/dataset/ycsb-200M.bin.data"
 
 file_name = lognormal_path
 key_type = np.int
 
-if file_name == lognormal_path or file_name == test_lognormal_path:
+if file_name == lognormal_path or file_name == test_lognormal_path or file_name == ycsb_path or file_name == test_ycsb_path:
     key_type = np.int_
-elif file_name == longlat_path or file_name == test_longlat_path:
+elif file_name == longlat_path or file_name == test_longlat_path or file_name == test_longitudes_path or file_name == longitudes_path:
     key_type = np.float
 
 # uncomment for binary file

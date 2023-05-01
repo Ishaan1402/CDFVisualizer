@@ -12,7 +12,7 @@ test_enron_path = "datasets/enron.out"
 test_cit_path = "datasets/cit-patents.out"
 test_fb_path = "datasets/fb-wall.out"
 
-# True Paths
+# True Paths used in cluster (switch these for the proper filepath for user)
 lognormal_path = "/users/ipatel9/dataset/lognormal-190M.bin.data"
 longlat_path = "/users/ipatel9/dataset/longlat-200M.bin.data"
 longitudes_path = "/users/ipatel9/dataset/longitudes-200M.bin.data"
@@ -23,7 +23,7 @@ cit_path = "/users/ipatel9/dataset/cit-patents.out"
 fb_path = "/users/ipatel9/dataset/fb-wall.out"
 
 
-file_name = fb_path
+file_name = test_enron_path
 key_type = np.int64
 
 if file_name == lognormal_path or file_name == test_lognormal_path or file_name == ycsb_path or file_name == test_ycsb_path:
@@ -43,11 +43,14 @@ print("length of arr: ", len(arr))
 
 # Create a plot of the CDF
 ecdf = np.arange(1, len(arr)+1) / len(arr)
-arr.sort()
+arr_sorted = np.sort(arr)
+
+# Calculate the PDF from the ECDF
+pdf = np.diff(ecdf) / np.diff(arr_sorted)
 
 # Plot the eCDF
 print("plotting cdf...")
-plt.step(arr, ecdf, linewidth=3)
+plt.step(arr[:-1], pdf)
 
 title_font = {'family' : 'sans-serif',
         'fontweight' : 'medium',
@@ -67,12 +70,15 @@ plt.xlabel('Key', **x_axis_font)
 # add left=0.17 if adding y label
 plt.subplots_adjust(bottom=0.15)
 locs, labels = plt.yticks()
-plt.yticks(np.arange(0, 1.1, step=0.25), fontsize=15)
+# plt.yticks(np.arange(0, 1.1, step=0.25), fontsize=15)
 plt.xticks(fontsize=15)
 # use the below line if xticks overlap, switch between 4 and 6
 # plt.locator_params(axis='x', nbins=6)
 plt.grid(axis = 'y')
 print("saving plot...")
-plt.savefig("fb-wall_ecdf.png")
-print(file_name[23:], "plot created")
-# plt.show()
+# plt.savefig("fb-wall_ecdf.png")
+if file_name[0:3] == 'test':
+    print(file_name[8:], "plot created")
+else:
+    print(file_name[23:], "plot created")
+plt.show()
